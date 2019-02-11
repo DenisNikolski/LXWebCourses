@@ -1,0 +1,26 @@
+img {
+    width: 800px
+}
+
+#imgTitle {
+    width: 800px;
+    text-align: center
+}
+
+li {
+    font-size: 14pt
+}
+
+table {
+    width: 100%
+}
+
+table,
+th,
+td {
+    border: 2px solid black;
+}
+
+td>button {
+    width: 100%
+}
