@@ -1,14 +1,80 @@
+* {
+    box-sizing: border-box;
+}
+
 html,
 body {
     margin: 0%;
     padding: 0%;
-    height: 100%
+    height: 100%;
 }
 
-#header {
-    width: 100%
+.container {
+    width: 100%;
+    height: 100%;
 }
 
-span {
-    width: 50%
+.container .element {
+    float: left;
+    border: 5px solid white;
+}
+
+.firstLine,
+.secondLine,
+.thirdLine,
+.fourthLine {
+    width: 100%;
+
+}
+
+.firstLine {
+    height: 10%;
+}
+
+.thirdLine {
+    height: 30%;
+}
+
+.fourthLine {
+    height: 20%;
+}
+
+.container .firstLine .element:first-child,
+.container .secondLine,
+.container .thirdLine .element:first-child,
+.container .fourthLine .element:first-child {
+    border-left: 0;
+}
+
+.container .firstLine .element:last-child,
+.container .secondLine,
+.container .thirdLine .element:last-child,
+.container .fourthLine .element:last-child {
+    border-right: 0;
+}
+
+.container .firstLine .element {
+    width: 50%;
+    height: 100%;
+    border-top: 0;
+    background-color: #4caf50;
+}
+
+.container .secondLine {
+    width: 100%;
+    height: 40%;
+    background-color: #C8E6C9;
+}
+
+.container .thirdLine .element {
+    width: 33.33%;
+    height: 100%;
+    background-color: #A5D6A7;
+}
+
+.container .fourthLine .element {
+    width: 25%;
+    height: 100%;
+    background-color: #81C784;
+    border-bottom: 0;
 }
