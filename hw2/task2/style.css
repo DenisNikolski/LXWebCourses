@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* .section {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+} */
+
+.square {
+    width: 25vw;
+    height: 25vw;
+    top: 25%;
+    left: 25%;
+    position: absolute;
+}
+
+#redSquare {
+    left: 20%;
+    top: 20%;
+    background-color: #f44336;
+}
+
+#greenSquare {
+    background-color: #4caf50;
+    z-index: 3;
+}
+
+#blueSquare {
+    left: 30%;
+    top: 30%;
+    background-color: #2196f3;
+}
