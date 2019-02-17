@@ -7,7 +7,7 @@ html,
 body {
     height: 100%;
     background-color: #e0e0e0;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 .header,
@@ -44,7 +44,7 @@ body {
 }
 
 .section {
-    margin: 5% 5% 0 15%;
+    margin: 2% 5% 2% 15%;
 }
 
 .footer {
