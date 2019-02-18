@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    height: 100%;
+}
+
+.wrapper * {
+    flex: 1 100%;
+    margin: 10px;
+}
+
+.header {
+    height: 10%;
+    background-color: #e57373;
+}
+
+.header-1 {
+    flex: 1;
+}
+
+.header-2 {
+    flex: 2;
+}
+
+.main {
+    height: 50%;
+    background-color: #78909C;
+}
+
+.footer {
+    height: 30%;
+    background-color: #2196f3;
+    flex: 1;
+}
+
+@media all and (max-width: 500px) {
+
+    .header,
+    .footer {
+        flex: 100%;
+    }
+
+}
+
+@media all and (min-width: 500px) and (max-width: 1100px) {
+    .footer {
+        flex: 40%;
+    }
+}
