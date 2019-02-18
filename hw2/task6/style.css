@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+    background-color: #E0E0E0;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    height: 100%;
+}
+
+.item {
+    margin: 5px;
+    flex: 19%;
+    background-color: white;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+.imageWrapper {
+    width: 100%;
+    height: 80%;
+}
+
+.item img {
+    max-width: 100%;
+}
+
+.item .subText {
+    font-size: 1vw;
+    color: #9e9e9e;
+}
+
+.item p:hover {
+    color: #f44336;
+}
+
+@media all and (max-width: 1280) {
+    .item {
+        flex: 24%;
+    }
+}
