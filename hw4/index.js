@@ -38,7 +38,6 @@ function Computer() {
     this.getGraphicsCard = () => {
         return graphicsCard;
     };
-
 }
 
 function Ultrabook() {
@@ -67,22 +66,22 @@ var main = new function () {
         this.allStuff.push(computingServer);
 
         this.addStuffToDOM(this.allStuff);
-
     };
 
     this.addStuffToDOM = function (stuffToAdd) {
+        const P = "P",
+            H6 = "H6",
+            BUTTON = "button",
+            CARD_ITEM_HTML_CLASS = "g--6 g-m--12 no-margin-vertical",
+            CARD_BUTTON_EDIT_HTML_CLASS = "btn--raised btn--yellow g--5  g-m--12 no-nudge--m no-margin-vertical",
+            CARD_BUTTON_DELETE_HTML_CLASS = "btn--raised btn--red g--5 nudge--left g-m--12 no-nudge--m no-margin-vertical",
+            CARD_HTML_CLASS = "g--3 g-s--12 card m--1 container--wrap container--justify";
+
         var cardContainer = document.getElementById("cardContainer");
 
         stuffToAdd.forEach(computer => {
-            const P = "P",
-                H6 = "H6",
-                BUTTON = "button",
-                CARD_ITEM_HTML_CLASS = "g--6 g-m--12 no-margin-vertical",
-                CARD_BUTTON_EDIT_HTML_CLASS = "btn--raised btn--yellow g--5  g-m--12 no-nudge--m no-margin-vertical",
-                CARD_BUTTON_DELETE_HTML_CLASS = "btn--raised btn--red g--5 nudge--left g-m--12 no-nudge--m no-margin-vertical";
-
             var card = document.createElement("div");
-            card.className = "g--3 g-s--12 card m--1 container--wrap container--justify";
+            card.className = CARD_HTML_CLASS;
 
             this.createCardElement(card, H6, CARD_ITEM_HTML_CLASS, "Manufacturer:");
             this.createCardElement(card, P, CARD_ITEM_HTML_CLASS, computer.getManufacturer());
@@ -94,7 +93,7 @@ var main = new function () {
             this.createCardElement(card, P, CARD_ITEM_HTML_CLASS, computer.getProcessor());
 
             var editButton = this.createCardElement(card, BUTTON, CARD_BUTTON_EDIT_HTML_CLASS, "Edit");
-            editButton.onclick = this.onEditCartButton;
+            editButton.onclick = this.onEditCardButton;
 
             var deleteButton = this.createCardElement(card, BUTTON, CARD_BUTTON_DELETE_HTML_CLASS, "Delete");
             deleteButton.onclick = this.onDeleteCardButton;
@@ -103,7 +102,7 @@ var main = new function () {
         });
     };
 
-    this.createCardElement = function (card, element, className, cardInnerText) {
+    this.createCardElement = (card, element, className, cardInnerText) => {
         var cardElement = document.createElement(element);
         cardElement.className = className;
         cardElement.innerText = cardInnerText;
@@ -112,7 +111,7 @@ var main = new function () {
         return cardElement;
     };
 
-    this.onEditCartButton = oMouthEvent => {
+    this.onEditCardButton = oMouthEvent => {
         var clickedCard = oMouthEvent.currentTarget.parentElement;
         var cardIndex = Array.from(clickedCard.parentElement.children).indexOf(clickedCard);
         if (cardIndex > -1) {
@@ -128,7 +127,6 @@ var main = new function () {
             clickedCard.remove();
         }
     };
-
 }();
 
 main.startApp();
