@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="index.js" defer></script>
     <link href="surface_styles.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <title>HW4</title>
 </head>
 
@@ -15,11 +16,50 @@
         <header class="container--wrap">
             <h1 class="m--1 g--4 g-s--12 docsHeader">HW4</h1>
         </header>
-        <div class="g--10 m-1 container--wrap container--justify" id="cardContainer">
+        <div class="g--10 m--1 container--wrap container--justify" id="cardContainer">
+
+            <div class="g--3  g-s--12 card">
+                <h5>Material Design</h5>
+                <p>Design philosophy and aesthetics inspired by Google's Material Design</p>
+                <input type="checkbox" id="modal-1">
+                <label class="modal-trigger" for="modal-1">Edit</label>
+                <div class="modal-content g--4">
+                    <form>
+                        <div class="g--12 no-margin-vertical">
+                            <select>
+                                <option>1</option>
+                            </select>
+                        </div>
+                        <input type="text" required placeholder="Manufacturer">
+                        <input type="text" required placeholder="GraphicsCard">
+                        <input type="text" required placeholder="Processor">
+                        <button type="submit" value="Submit" class="btn--raised btn--green">save</button>
+                        <a href="/hw4/index.html" class="nudge--left">cancel</a>
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
     <div class="m--10 container">
-        <button class="btn--float btn--primary" id="createButton">+</button>
+        <input type="checkbox" id="modal-1">
+        <label class="modal-trigger" for="modal-1" id="create-modal-trigger">
+        </label>
+        <button style="display: relative" class="btn--float btn--primary modal" id="createButton1">+</button>
+
+        <div class="modal-content g--4">
+            <form>
+                <div class="g--12 no-margin-vertical">
+                    <select>
+                        <option>1</option>
+                    </select>
+                </div>
+                <input type="text" required placeholder="Manufacturer">
+                <input type="text" required placeholder="GraphicsCard">
+                <input type="text" required placeholder="Processor">
+                <button id="createButton" type="button" class="btn--raised btn--green">save</button>
+                <a href="/hw4/index.html" class="nudge--left">cancel</a>
+            </form>
+        </div>
     </div>
 </body>
 
