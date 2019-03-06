@@ -68,7 +68,7 @@ var main = new function () {
         this.addStuffToDOM(this.allStuff);
     };
 
-    this.addStuffToDOM = function (stuffToAdd) {
+    this.addStuffToDOM = stuffToAdd => {
         const P = "P",
             H6 = "H6",
             BUTTON = "button",
@@ -131,8 +131,13 @@ var main = new function () {
 
 main.startApp();
 
-document.getElementById("createButton").onclick = function () {
+document.getElementById("createButton").onclick = () => {
     var computer = new Computer();
     main.allStuff.push(computer);
     main.addStuffToDOM([computer]);
+    document.getElementById("create_modal_trigger").click();
+};
+
+document.getElementById("cancelLink").onclick = () => {
+    document.getElementById("create_modal_trigger").click();
 };

@@ -1,5 +1,6 @@
-#create-modal-trigger {
-    position: absolute;
-    opacity: 0;
-    z-index: 1
+#create_modal_trigger {
+    border-radius: 50%;
+    color: black;
+    padding-top: 15px;
+    padding-left: 19px;
 }
