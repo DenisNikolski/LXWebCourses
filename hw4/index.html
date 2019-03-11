@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="index.js" defer></script>
     <link href="surface_styles.css" rel="stylesheet">
@@ -19,22 +21,25 @@
         <div class="g--10 m--1 container--wrap container--justify" id="cardContainer">
         </div>
     </main>
+
     <div class="m--10 container">
-        <input type="checkbox" id="modal-create">
-        <label class="modal-trigger btn--float btn--primary" for="modal-create" id="create_modal_trigger">+</label>
-        <div class="modal-content g--4" id="createModalContent">
-            <div class="g--12 no-margin-vertical">
-                <select>
-                    <option>Ultrabook</option>
-                    <option>ComputingServer</option>
-                </select>
+        <form>
+            <input type="checkbox" id="modal-create">
+            <label class="modal-trigger btn--float btn--primary" for="modal-create" id="create_modal_trigger">+</label>
+            <div class="modal-content g--4" id="createModalContent">
+                <div class="g--12 no-margin-vertical">
+                    <select id="computerClass">
+                        <option>Ultrabook</option>
+                        <option>ComputingServer</option>
+                    </select>
+                </div>
+                <input type="text" id="Manufacturer" required placeholder="Manufacturer">
+                <input type="text" id="GraphicsCard" required placeholder="GraphicsCard">
+                <input type="text" id="Processor" required placeholder="Processor">
+                <button type="submit" value="Submit" class="btn--raised btn--green" id="createButton">save</button>
+                <a class="nudge--left" id="cancelLink">cancel</a>
             </div>
-            <input type="text" required placeholder="Manufacturer">
-            <input type="text" required placeholder="GraphicsCard">
-            <input type="text" required placeholder="Processor">
-            <button type="submit" value="Submit" class="btn--raised btn--green" id="createButton">save</button>
-            <a class="nudge--left" id="cancelLink">cancel</a>
-        </div>
+        </form>
     </div>
 </body>
 

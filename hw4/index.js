@@ -115,6 +115,32 @@ var main = new function () {
         var clickedCard = oMouthEvent.currentTarget.parentElement;
         var cardIndex = Array.from(clickedCard.parentElement.children).indexOf(clickedCard);
         if (cardIndex > -1) {
+
+            // var editBtnContariner = document.createElement("div");
+            // editBtnContariner.className = "m--10 container";
+
+            // var hiddenInput = document.createElement("input");
+            // hiddenInput.type = "checkbox";
+            // hiddenInput.id = "modal-edit";
+            // editBtnContariner.appendChild(hiddenInput);
+
+            // var inputLabel = document.createElement("label");
+            // inputLabel.className = "modal-trigger";
+            // inputLabel.htmlFor = "modal-edit";
+            // editBtnContariner.appendChild(inputLabel);
+
+            // var modalContent = document.createElement("div");
+            // modalContent.className = "modal-content g--4";
+            // editBtnContariner.appendChild(modalContent);
+
+            // var formInputManufacturer = document.createElement("input");
+            // formInputManufacturer.type = "text";
+            // formInputManufacturer.id = "ManufacturerEdit";
+            // formInputManufacturer.placeholder = "Manufacturer";
+            // modalContent.appendChild(formInputManufacturer);
+
+            // clickedCard.appendChild(editBtnContariner);
+
             alert(cardIndex);
         }
     };
@@ -131,13 +157,45 @@ var main = new function () {
 
 main.startApp();
 
-document.getElementById("createButton").onclick = () => {
-    var computer = new Computer();
-    main.allStuff.push(computer);
-    main.addStuffToDOM([computer]);
+document.getElementById("createButton").onclick = oMouthEvent => {
+    oMouthEvent.preventDefault();
+
+    var graphicsCard = document.getElementById("GraphicsCard");
+    var processor = document.getElementById("Processor");
+    var manufacturer = document.getElementById("Manufacturer");
+
+
+    switch (document.getElementById("computerClass").value) {
+        case "Ultrabook":
+            var newComputer = new Ultrabook();
+        case "ComputingServer":
+            var newComputer = new ComputingServer();
+        default:
+            console.log("no such class");
+    }
+
+    try {
+        newComputer.setGraphicsCard(graphicsCard.value);
+        newComputer.setManufacturer(manufacturer.value);
+        newComputer.setProcessor(processor.value);
+    } catch (error) {
+        alert(error);
+        return;
+    }
+
+    main.allStuff.push(newComputer);
+    main.addStuffToDOM([newComputer]);
     document.getElementById("create_modal_trigger").click();
+
+    graphicsCard.value = "";
+    manufacturer.value = "";
+    processor.value = "";
 };
 
 document.getElementById("cancelLink").onclick = () => {
     document.getElementById("create_modal_trigger").click();
+    document.getElementById("GraphicsCard").value = "";
+    document.getElementById("GraphicsCard").value = "";
+    document.getElementById("Manufacturer").value = "";
+    document.getElementById("Processor").value = "";
 };
