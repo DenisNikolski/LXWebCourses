@@ -92,8 +92,15 @@ var main = new function () {
             this.createCardElement(card, H6, CARD_ITEM_HTML_CLASS, "Processor:");
             this.createCardElement(card, P, CARD_ITEM_HTML_CLASS, computer.getProcessor());
 
-            var editButton = this.createCardElement(card, BUTTON, CARD_BUTTON_EDIT_HTML_CLASS, "Edit");
+            // var hiddenInput = this.createCardElement(card, "input", "", "");
+            // hiddenInput.type = "checkbox";
+            // hiddenInput.id = "modal-edit-dummy";
+            // hiddenInput.style = "display:block";
+
+            var editButton = this.createCardElement(card, "label", "modal-trigger g--5  g-m--12 no-nudge--m no-margin-vertical", "Edit");
             editButton.onclick = this.onEditCardButton;
+            editButton.htmlFor = "modal-edit";
+            editButton.id = "update_modal_trigger";
 
             var deleteButton = this.createCardElement(card, BUTTON, CARD_BUTTON_DELETE_HTML_CLASS, "Delete");
             deleteButton.onclick = this.onDeleteCardButton;
@@ -112,36 +119,54 @@ var main = new function () {
     };
 
     this.onEditCardButton = oMouthEvent => {
-        var clickedCard = oMouthEvent.currentTarget.parentElement;
+        var clickedButton = oMouthEvent.currentTarget;
+        var clickedCard = clickedButton.parentElement;
         var cardIndex = Array.from(clickedCard.parentElement.children).indexOf(clickedCard);
+        var hiddenCheckBox = clickedCard.childNodes[8];
+        // var hiddenCheckBox = document.getElementById("modal-edit-dummy")
+
         if (cardIndex > -1) {
+            var prevModalContent = document.getElementById("modal-content-edit");
 
-            // var editBtnContariner = document.createElement("div");
-            // editBtnContariner.className = "m--10 container";
+            if (prevModalContent) {
+                prevModalContent.remove();
+                // hiddenCheckBox.id = "modal-edit-dummy";
+                // clickedButton.htmlFor = "modal-edit-dummy";
+                hiddenCheckBox.remove();
+                return;
+            }
 
-            // var hiddenInput = document.createElement("input");
-            // hiddenInput.type = "checkbox";
-            // hiddenInput.id = "modal-edit";
-            // editBtnContariner.appendChild(hiddenInput);
+            var hiddenCheckBox = this.createCardElement(clickedCard, "input", "", "");
+            hiddenCheckBox.type = "checkbox";
+            hiddenCheckBox.id = "modal-edit";
+            hiddenCheckBox.style = "display:block";
 
-            // var inputLabel = document.createElement("label");
-            // inputLabel.className = "modal-trigger";
-            // inputLabel.htmlFor = "modal-edit";
-            // editBtnContariner.appendChild(inputLabel);
+            // clickedButton.htmlFor = "modal-edit";
+            // hiddenCheckBox.id = "modal-edit";
+            // hiddenCheckBox.checked = true;
 
-            // var modalContent = document.createElement("div");
-            // modalContent.className = "modal-content g--4";
-            // editBtnContariner.appendChild(modalContent);
+            var modalContent = document.createElement("div");
+            modalContent.className = "modal-content g--4";
+            modalContent.id = "modal-content-edit"
+            clickedCard.appendChild(modalContent);
 
-            // var formInputManufacturer = document.createElement("input");
-            // formInputManufacturer.type = "text";
-            // formInputManufacturer.id = "ManufacturerEdit";
-            // formInputManufacturer.placeholder = "Manufacturer";
-            // modalContent.appendChild(formInputManufacturer);
+            var formInputManufacturer = document.createElement("input");
+            formInputManufacturer.type = "text";
+            formInputManufacturer.value = clickedCard.childNodes[1].innerText;
+            formInputManufacturer.id = "ManufacturerEdit";
+            formInputManufacturer.placeholder = "Manufacturer";
+            modalContent.appendChild(formInputManufacturer);
+
+            var formButtonOk = document.createElement("button");
+            formButtonOk.className = "btn--raised btn--green g--10";
+            formButtonOk.innerText = "ok";
+            modalContent.appendChild(formButtonOk);
 
             // clickedCard.appendChild(editBtnContariner);
 
-            alert(cardIndex);
+            // document.getElementById("update_modal_trigger").click();
+            // alert(cardIndex);
+            hiddenCheckBox.checked = true;
         }
     };
 
