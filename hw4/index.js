@@ -2,7 +2,7 @@ function Computer() {
     this.processor = 0;
     this.manufacturer = "";
     this.graphicsCard = "";
-};
+}
 
 Computer.prototype.setProcessor = function (processor) {
     if (processor) {
@@ -51,7 +51,7 @@ var main = new function () {
     this.allStuff = [];
 
     this.startApp = () => {
-        dpd['nikolskicomputers'].get(function (result, err) {
+        dpd.nikolskicomputers.get(function (result, err) {
                 if (err) return console.log(err);
                 console.log(result);
             })
@@ -64,10 +64,14 @@ var main = new function () {
         const P = "P",
             H6 = "H6",
             BUTTON = "button",
+            FORM = "form",
+            CARD_IMEM_FORM_HTML_CLASS = "g--5  g-m--12 no-nudge--m no-margin-vertical",
             CARD_ITEM_HTML_CLASS = "g--6 g-m--12 no-margin-vertical",
-            CARD_BUTTON_EDIT_HTML_CLASS = "btn--raised btn--yellow g--5  g-m--12 no-nudge--m no-margin-vertical",
-            CARD_BUTTON_DELETE_HTML_CLASS = "btn--raised btn--red g--5 nudge--left g-m--12 no-nudge--m no-margin-vertical",
+            CARD_BUTTON_EDIT_HTML_CLASS = "btn--raised btn--yellow g--5 g-m--12 no-nudge--m no-margin-vertical",
+            CARD_BUTTON_DELETE_HTML_CLASS = "btn--raised btn--red g--12 nudge--left no-nudge--m no-margin-vertical",
             CARD_HTML_CLASS = "g--3 g-s--12 card m--1 container--wrap container--justify";
+
+        this.allStuff = this.allStuff.concat(stuffToAdd);
 
         var cardContainer = document.getElementById("cardContainer");
 
@@ -87,17 +91,18 @@ var main = new function () {
             var editButton = this.createCardElement(card, BUTTON, CARD_BUTTON_EDIT_HTML_CLASS, "Edit");
             editButton.onclick = this.onEditCardButton;
 
-            var deleteButton = this.createCardElement(card, BUTTON, CARD_BUTTON_DELETE_HTML_CLASS, "Delete");
+            var deleteForm = this.createCardElement(card, FORM, CARD_IMEM_FORM_HTML_CLASS);
+            var deleteButton = this.createCardElement(deleteForm, BUTTON, CARD_BUTTON_DELETE_HTML_CLASS, "Delete");
             deleteButton.onclick = this.onDeleteCardButton;
 
             cardContainer.appendChild(card);
         });
     };
 
-    this.createCardElement = (card, element, className, cardInnerText) => {
+    this.createCardElement = (card, element, className, elementInnerText) => {
         var cardElement = document.createElement(element);
-        cardElement.className = className;
-        cardElement.innerText = cardInnerText;
+        if (className) cardElement.className = className;
+        if (elementInnerText) cardElement.innerText = elementInnerText;
         card.appendChild(cardElement);
 
         return cardElement;
@@ -119,7 +124,7 @@ var main = new function () {
                 return;
             }
             this.createEditModal(clickedButton, clickedCard);
-        };
+        }
     };
 
     this.createEditModal = (clickedButton, clickedCard) => {
@@ -130,23 +135,27 @@ var main = new function () {
 
         var modalContent = document.createElement("div");
         modalContent.className = "modal-content g--4";
-        modalContent.id = "modal-content-edit"
+        modalContent.id = "modal-content-edit";
         clickedCard.appendChild(modalContent);
 
-        this.createEditModalInput(modalContent, "input", clickedCard.childNodes[1].innerText,
+        var form = document.createElement("form");
+        modalContent.appendChild(form);
+
+        this.createEditModalInput(form, "input", clickedCard.childNodes[1].innerText,
             "ManufacturerEdit", "Manufacturer");
 
-        this.createEditModalInput(modalContent, "input", clickedCard.childNodes[3].innerText,
-            "GrapgicsCardEdit", "GrapgicsCard");
+        this.createEditModalInput(form, "input", clickedCard.childNodes[3].innerText,
+            "GraphicsCardEdit", "GrapgicsCard");
 
-        this.createEditModalInput(modalContent, "input", clickedCard.childNodes[5].innerText,
+        this.createEditModalInput(form, "input", clickedCard.childNodes[5].innerText,
             "ProcessorEdit", "Processor");
 
         var formButtonOk = document.createElement("button");
         formButtonOk.className = "btn--raised btn--green g--10";
+
         formButtonOk.innerText = "ok";
-        formButtonOk.onclick = () => clickedButton.click();
-        modalContent.appendChild(formButtonOk);
+        formButtonOk.onclick = this.updateComputer;
+        form.appendChild(formButtonOk);
 
         hiddenCheckBox.checked = true;
     };
@@ -157,15 +166,48 @@ var main = new function () {
         formInput.value = inputValue;
         formInput.id = inputId;
         formInput.placeholder = inputPlaceholder;
+        formInput.required = true;
         modalContent.appendChild(formInput);
+
+        return formInput;
+    };
+
+    this.updateComputer = (oMouthEvent) => {
+        oMouthEvent.preventDefault();
+
+        var clickedCard = oMouthEvent.currentTarget.parentElement.parentElement.parentElement;
+        var cardIndex = Array.from(clickedCard.parentElement.children).indexOf(clickedCard);
+
+        if (cardIndex > -1) {
+            var clickedComputer = this.allStuff[cardIndex];
+            var processorEditValue = document.getElementById("ProcessorEdit").value;
+            var manufacturerEditValue = document.getElementById("ManufacturerEdit").value;
+            var graphicsCardEditValue = document.getElementById("GraphicsCardEdit").value;
+
+            dpd.nikolskicomputers.put(clickedComputer.id, {
+                "processor": processorEditValue,
+                "manufacturer": manufacturerEditValue,
+                "graphicsCard": graphicsCardEditValue
+            }, function (result, err) {
+                if (err) return console.log(err);
+                console.log(result, result.id);
+            }).then(() => {
+                location.reload();
+            });
+        }
     };
 
     this.onDeleteCardButton = oMouthEvent => {
-        var clickedCard = oMouthEvent.currentTarget.parentElement;
+        oMouthEvent.preventDefault();
+
+        var clickedCard = oMouthEvent.currentTarget.parentElement.parentElement;
         var cardIndex = Array.from(clickedCard.parentElement.children).indexOf(clickedCard);
         if (cardIndex > -1) {
-            this.allStuff.splice(cardIndex, 1);
-            clickedCard.remove();
+            dpd.nikolskicomputers.del(this.allStuff[cardIndex].id, function (err) {
+                if (err) console.log(err);
+            }).then(() => {
+                location.reload();
+            });
         }
     };
 }();
@@ -179,12 +221,14 @@ document.getElementById("createButton").onclick = oMouthEvent => {
     var processor = document.getElementById("Processor");
     var manufacturer = document.getElementById("Manufacturer");
 
-
+    var newComputer;
     switch (document.getElementById("computerClass").value) {
         case "Ultrabook":
-            var newComputer = new Ultrabook();
+            newComputer = new Ultrabook();
+            break;
         case "ComputingServer":
-            var newComputer = new ComputingServer();
+            newComputer = new ComputingServer();
+            break;
         default:
             console.log("no such class");
     }
@@ -198,13 +242,16 @@ document.getElementById("createButton").onclick = oMouthEvent => {
         return;
     }
 
-    main.allStuff.push(newComputer);
-    main.addStuffToDOM([newComputer]);
-    document.getElementById("create_modal_trigger").click();
-
-    graphicsCard.value = "";
-    manufacturer.value = "";
-    processor.value = "";
+    dpd.nikolskicomputers.post({
+        "processor": processor.value,
+        "manufacturer": manufacturer.value,
+        "graphicsCard": graphicsCard.value
+    }, function (result, err) {
+        if (err) return console.log(err);
+        console.log(result, result.id);
+    }).then(() => {
+        location.reload();
+    });
 };
 
 document.getElementById("cancelLink").onclick = () => {
