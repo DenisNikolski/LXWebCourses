@@ -1,74 +1,66 @@
 function Computer() {
-    var processor = 0;
-    var manufacturer = "";
-    var graphicsCard = "";
+    this.processor = 0;
+    this.manufacturer = "";
+    this.graphicsCard = "";
+};
 
-    this.setProcessor = _processor => {
-        if (_processor) {
-            processor = _processor;
-        } else {
-            throw new Error('inital value');
-        }
-    };
+Computer.prototype.setProcessor = function (processor) {
+    if (processor) {
+        this.processor = processor;
+    } else {
+        throw new Error('inital value');
+    }
+};
 
-    this.getProcessor = () => {
-        return processor;
-    };
+Computer.prototype.getProcessor = function () {
+    return this.processor;
+};
 
-    this.setManufacturer = _manufacturer => {
-        if (_manufacturer) {
-            manufacturer = _manufacturer;
-        } else {
-            throw new Error('inital value');
-        }
-    };
+Computer.prototype.setManufacturer = function (manufacturer) {
+    if (manufacturer) {
+        this.manufacturer = manufacturer;
+    } else {
+        throw new Error('inital value');
+    }
+};
 
-    this.getManufacturer = () => {
-        return manufacturer;
-    };
+Computer.prototype.getManufacturer = function () {
+    return this.manufacturer;
+};
 
-    this.setGraphicsCard = _graphicsCard => {
-        if (_graphicsCard) {
-            graphicsCard = _graphicsCard;
-        } else {
-            throw new Error('inital value');
-        }
-    };
+Computer.prototype.setGraphicsCard = function (graphicsCard) {
+    if (graphicsCard) {
+        this.graphicsCard = graphicsCard;
+    } else {
+        throw new Error('inital value');
+    }
+};
 
-    this.getGraphicsCard = () => {
-        return graphicsCard;
-    };
-}
+Computer.prototype.getGraphicsCard = function () {
+    return this.graphicsCard;
+};
 
-function Ultrabook() {
-    Computer.apply(this, arguments);
-}
+function Ultrabook() {}
+Ultrabook.prototype = Object.create(Computer.prototype);
 
-function ComputingServer() {
-    Computer.apply(this, arguments);
-}
+function ComputingServer() {}
+ComputingServer.prototype = Object.create(Computer.prototype);
 
 var main = new function () {
     this.computerType = ["ultrabook", "computingServer"];
     this.allStuff = [];
 
     this.startApp = () => {
-        var ultrabook = new Ultrabook();
-        ultrabook.setManufacturer("Apple");
-        ultrabook.setGraphicsCard("Intel Iris");
-        ultrabook.setProcessor("Intel i5");
-        this.allStuff.push(ultrabook);
-
-        var computingServer = new ComputingServer();
-        computingServer.setManufacturer("Huawei");
-        computingServer.setGraphicsCard("AMD");
-        computingServer.setProcessor("Intel i9");
-        this.allStuff.push(computingServer);
-
-        this.addStuffToDOM(this.allStuff);
+        dpd['nikolskicomputers'].get(function (result, err) {
+                if (err) return console.log(err);
+                console.log(result);
+            })
+            .then(result => {
+                this.addStuffToDOM(result);
+            });
     };
 
-    this.addStuffToDOM = stuffToAdd => {
+    this.addStuffToDOM = function (stuffToAdd) {
         const P = "P",
             H6 = "H6",
             BUTTON = "button",
@@ -84,23 +76,16 @@ var main = new function () {
             card.className = CARD_HTML_CLASS;
 
             this.createCardElement(card, H6, CARD_ITEM_HTML_CLASS, "Manufacturer:");
-            this.createCardElement(card, P, CARD_ITEM_HTML_CLASS, computer.getManufacturer());
+            this.createCardElement(card, P, CARD_ITEM_HTML_CLASS, computer.manufacturer);
 
             this.createCardElement(card, H6, CARD_ITEM_HTML_CLASS, "GraphicsCard:");
-            this.createCardElement(card, P, CARD_ITEM_HTML_CLASS, computer.getGraphicsCard());
+            this.createCardElement(card, P, CARD_ITEM_HTML_CLASS, computer.graphicsCard);
 
             this.createCardElement(card, H6, CARD_ITEM_HTML_CLASS, "Processor:");
-            this.createCardElement(card, P, CARD_ITEM_HTML_CLASS, computer.getProcessor());
+            this.createCardElement(card, P, CARD_ITEM_HTML_CLASS, computer.processor);
 
-            // var hiddenInput = this.createCardElement(card, "input", "", "");
-            // hiddenInput.type = "checkbox";
-            // hiddenInput.id = "modal-edit-dummy";
-            // hiddenInput.style = "display:block";
-
-            var editButton = this.createCardElement(card, "label", "modal-trigger g--5  g-m--12 no-nudge--m no-margin-vertical", "Edit");
+            var editButton = this.createCardElement(card, BUTTON, CARD_BUTTON_EDIT_HTML_CLASS, "Edit");
             editButton.onclick = this.onEditCardButton;
-            editButton.htmlFor = "modal-edit";
-            editButton.id = "update_modal_trigger";
 
             var deleteButton = this.createCardElement(card, BUTTON, CARD_BUTTON_DELETE_HTML_CLASS, "Delete");
             deleteButton.onclick = this.onDeleteCardButton;
@@ -123,51 +108,56 @@ var main = new function () {
         var clickedCard = clickedButton.parentElement;
         var cardIndex = Array.from(clickedCard.parentElement.children).indexOf(clickedCard);
         var hiddenCheckBox = clickedCard.childNodes[8];
-        // var hiddenCheckBox = document.getElementById("modal-edit-dummy")
 
         if (cardIndex > -1) {
             var prevModalContent = document.getElementById("modal-content-edit");
 
             if (prevModalContent) {
                 prevModalContent.remove();
-                // hiddenCheckBox.id = "modal-edit-dummy";
-                // clickedButton.htmlFor = "modal-edit-dummy";
                 hiddenCheckBox.remove();
+                clickedButton.id = "";
                 return;
             }
+            this.createEditModal(clickedButton, clickedCard);
+        };
+    };
 
-            var hiddenCheckBox = this.createCardElement(clickedCard, "input", "", "");
-            hiddenCheckBox.type = "checkbox";
-            hiddenCheckBox.id = "modal-edit";
-            hiddenCheckBox.style = "display:block";
+    this.createEditModal = (clickedButton, clickedCard) => {
+        clickedButton.id = "modal-edit-btn-";
+        var hiddenCheckBox = this.createCardElement(clickedCard, "input", "", "");
+        hiddenCheckBox.type = "checkbox";
+        hiddenCheckBox.id = "modal-edit";
 
-            // clickedButton.htmlFor = "modal-edit";
-            // hiddenCheckBox.id = "modal-edit";
-            // hiddenCheckBox.checked = true;
+        var modalContent = document.createElement("div");
+        modalContent.className = "modal-content g--4";
+        modalContent.id = "modal-content-edit"
+        clickedCard.appendChild(modalContent);
 
-            var modalContent = document.createElement("div");
-            modalContent.className = "modal-content g--4";
-            modalContent.id = "modal-content-edit"
-            clickedCard.appendChild(modalContent);
+        this.createEditModalInput(modalContent, "input", clickedCard.childNodes[1].innerText,
+            "ManufacturerEdit", "Manufacturer");
 
-            var formInputManufacturer = document.createElement("input");
-            formInputManufacturer.type = "text";
-            formInputManufacturer.value = clickedCard.childNodes[1].innerText;
-            formInputManufacturer.id = "ManufacturerEdit";
-            formInputManufacturer.placeholder = "Manufacturer";
-            modalContent.appendChild(formInputManufacturer);
+        this.createEditModalInput(modalContent, "input", clickedCard.childNodes[3].innerText,
+            "GrapgicsCardEdit", "GrapgicsCard");
 
-            var formButtonOk = document.createElement("button");
-            formButtonOk.className = "btn--raised btn--green g--10";
-            formButtonOk.innerText = "ok";
-            modalContent.appendChild(formButtonOk);
+        this.createEditModalInput(modalContent, "input", clickedCard.childNodes[5].innerText,
+            "ProcessorEdit", "Processor");
 
-            // clickedCard.appendChild(editBtnContariner);
+        var formButtonOk = document.createElement("button");
+        formButtonOk.className = "btn--raised btn--green g--10";
+        formButtonOk.innerText = "ok";
+        formButtonOk.onclick = () => clickedButton.click();
+        modalContent.appendChild(formButtonOk);
 
-            // document.getElementById("update_modal_trigger").click();
-            // alert(cardIndex);
-            hiddenCheckBox.checked = true;
-        }
+        hiddenCheckBox.checked = true;
+    };
+
+    this.createEditModalInput = (modalContent, element, inputValue, inputId, inputPlaceholder) => {
+        var formInput = document.createElement(element);
+        formInput.type = "text";
+        formInput.value = inputValue;
+        formInput.id = inputId;
+        formInput.placeholder = inputPlaceholder;
+        modalContent.appendChild(formInput);
     };
 
     this.onDeleteCardButton = oMouthEvent => {
