@@ -1,61 +1,62 @@
-<mvc:View controllerName="sap.ui.demo.db.controller.App" 
-	xmlns="sap.m" 
-	xmlns:l="sap.ui.layout" 
-	xmlns:mvc="sap.ui.core.mvc">
-	<Panel headerText="{i18n>panel3HeaderText}" class="sapUiResponsiveMargin" width="auto">
-		<content>
-			<List id="ProductList" headerText="{i18n>AddressInfoTitle}" items="{products>/value}">
-				<items>
-					<ObjectListItem title="{products>FirstName} {products>LastName}" type="Active" press=".onItemSelected">
+<mvc:View controllerName="sap.ui.demo.db.controller.App"
+          xmlns="sap.m"
+          xmlns:l="sap.ui.layout"
+          xmlns:mvc="sap.ui.core.mvc">
+    <Panel class="sapUiResponsiveMargin" width="auto">
+        <content>
+            <List id="PersonList"  headerText="{i18n>panelHeaderText}" items="{people>/value}">
+                <items>
+                    <ObjectListItem title="{people>FirstName} {people>LastName}" type="Active"
+                                    press=".onItemSelected">
 
-					</ObjectListItem>
-				</items>
-			</List>
-		</content>
-	</Panel>
-	<Panel id="productDetailsPanel" headerText="{i18n>panel4HeaderText}" class="sapUiResponsiveMargin" width="auto">
-		<l:Grid defaultSpan="L3 M6 S12" containerQuery="true">
-			<Label text="{i18n>UserName}:"/>
-			<Input value="{products>UserName}"/>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </content>
+    </Panel>
+    <Panel id="PersonDetailsPanel" headerText="{i18n>PersonDetailsPanel}" class="sapUiResponsiveMargin" width="auto">
+        <l:Grid defaultSpan="L3 M6 S12" containerQuery="true">
+            <Label text="{i18n>UserName}:"/>
+            <Input value="{people>UserName}"/>
 
-			<Label text="{i18n>MiddleName}:"/>
-			<Input value="{products>MiddleName}"/>
+            <Label text="{i18n>MiddleName}:"/>
+            <Input value="{people>MiddleName}"/>
 
 
-			<Label text="{i18n>Gender}:"/>
-			<Input value="{products>Gender}"/>
+            <Label text="{i18n>Gender}:"/>
+            <Input value="{people>Gender}"/>
 
-			<Label text="{i18n>Age}:"/>
-			<Input value="{products>Age}"/>
+            <Label text="{i18n>Age}:"/>
+            <Input value="{people>Age}"/>
 
-			<Label text="{i18n>FavoriteFeature}:"/>
-			<Input value="{products>FavoriteFeature}"/>
+            <Label text="{i18n>FavoriteFeature}:"/>
+            <Input value="{people>FavoriteFeature}"/>
 
-			<Label text="{i18n>Emails}:"/>
-			<Input value="{products>Emails}"/>
+            <Label text="{i18n>Emails}:"/>
+            <Input value="{people>Emails}"/>
 
-			<Label text="{i18n>Features}:"/>
-			<Input value="{products>Features}"/>
-		</l:Grid>
-	</Panel>
+            <Label text="{i18n>Features}:"/>
+            <Input value="{people>Features}"/>
+        </l:Grid>
+    </Panel>
 
-	<Panel id="addressDetailsPanel" headerText="{i18n>panel3HeaderText}" class="sapUiResponsiveMargin" width="auto">
-		<content>
-			<List id="AddressInfoList" headerText="{i18n>AddressInfoTitle}" items="{products>AddressInfo}">
-				<items>
-					<ObjectListItem title="{products>Address}">
-						<attributes>
-							<ObjectAttribute title="{i18n>CityName}" text="{products>City/Name}"/>
-							<ObjectAttribute title="{i18n>Region}" text="{
+    <Panel id="addressDetailsPanel" class="sapUiResponsiveMargin" width="auto">
+        <content>
+            <List id="AddressInfoList" headerText="{i18n>AddressInfoTitle}" items="{people>AddressInfo}">
+                <items>
+                    <ObjectListItem title="{people>Address}">
+                        <attributes>
+                            <ObjectAttribute title="{i18n>CityName}" text="{people>City/Name}"/>
+                            <ObjectAttribute title="{i18n>Region}" text="{
 									parts: [
-										{path: 'products>City/Region'},
-										{path: 'products>City/CountryRegion'}
+										{path: 'people>City/Region'},
+										{path: 'people>City/CountryRegion'}
 									]}"/>
-						</attributes>
-					</ObjectListItem>
-				</items>
-			</List>
-		</content>
-	</Panel>
+                        </attributes>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </content>
+    </Panel>
 
 </mvc:View>

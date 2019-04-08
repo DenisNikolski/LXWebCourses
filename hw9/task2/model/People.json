@@ -1,6 +1,7 @@
 {
   "@odata.context": "https://services.odata.org/TripPinRESTierService/(S(uhyns00m224wviv5cfquzekq))/$metadata#People",
-  "value": [{
+  "value": [
+    {
       "UserName": "russellwhyte",
       "FirstName": "Russell",
       "LastName": "Whyte",
@@ -16,14 +17,16 @@
         "Feature1",
         "Feature2"
       ],
-      "AddressInfo": [{
-        "Address": "187 Suffolk Ln.",
-        "City": {
-          "Name": "Boise",
-          "CountryRegion": "United States",
-          "Region": "ID"
+      "AddressInfo": [
+        {
+          "Address": "187 Suffolk Ln.",
+          "City": {
+            "Name": "Boise",
+            "CountryRegion": "United States",
+            "Region": "ID"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -38,14 +41,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "2817 Milton Dr.",
-        "City": {
-          "Name": "Albuquerque",
-          "CountryRegion": "United States",
-          "Region": "NM"
+      "AddressInfo": [
+        {
+          "Address": "2817 Milton Dr.",
+          "City": {
+            "Name": "Albuquerque",
+            "CountryRegion": "United States",
+            "Region": "NM"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -61,14 +66,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "187 Suffolk Ln.",
-        "City": {
-          "Name": "Boise",
-          "CountryRegion": "United States",
-          "Region": "ID"
+      "AddressInfo": [
+        {
+          "Address": "187 Suffolk Ln.",
+          "City": {
+            "Name": "Boise",
+            "CountryRegion": "United States",
+            "Region": "ID"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -84,14 +91,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "89 Jefferson Way Suite 2",
-        "City": {
-          "Name": "Portland",
-          "CountryRegion": "United States",
-          "Region": "WA"
+      "AddressInfo": [
+        {
+          "Address": "89 Jefferson Way Suite 2",
+          "City": {
+            "Name": "Portland",
+            "CountryRegion": "United States",
+            "Region": "WA"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -120,14 +129,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "55 Grizzly Peak Rd.",
-        "City": {
-          "Name": "Butte",
-          "CountryRegion": "United States",
-          "Region": "MT"
+      "AddressInfo": [
+        {
+          "Address": "55 Grizzly Peak Rd.",
+          "City": {
+            "Name": "Butte",
+            "CountryRegion": "United States",
+            "Region": "MT"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -159,14 +170,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "55 Grizzly Peak Rd.",
-        "City": {
-          "Name": "Butte",
-          "CountryRegion": "United States",
-          "Region": "MT"
+      "AddressInfo": [
+        {
+          "Address": "55 Grizzly Peak Rd.",
+          "City": {
+            "Name": "Butte",
+            "CountryRegion": "United States",
+            "Region": "MT"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -182,14 +195,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "55 Grizzly Peak Rd.",
-        "City": {
-          "Name": "Butte",
-          "CountryRegion": "United States",
-          "Region": "MT"
+      "AddressInfo": [
+        {
+          "Address": "55 Grizzly Peak Rd.",
+          "City": {
+            "Name": "Butte",
+            "CountryRegion": "United States",
+            "Region": "MT"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -205,14 +220,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "55 Grizzly Peak Rd.",
-        "City": {
-          "Name": "Butte",
-          "CountryRegion": "United States",
-          "Region": "MT"
+      "AddressInfo": [
+        {
+          "Address": "55 Grizzly Peak Rd.",
+          "City": {
+            "Name": "Butte",
+            "CountryRegion": "United States",
+            "Region": "MT"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -228,14 +245,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "55 Grizzly Peak Rd.",
-        "City": {
-          "Name": "Butte",
-          "CountryRegion": "United States",
-          "Region": "MT"
+      "AddressInfo": [
+        {
+          "Address": "55 Grizzly Peak Rd.",
+          "City": {
+            "Name": "Butte",
+            "CountryRegion": "United States",
+            "Region": "MT"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -251,7 +270,8 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
+      "AddressInfo": [
+        {
           "Address": "87 Polk St. Suite 5",
           "City": {
             "Name": "San Francisco",
@@ -283,14 +303,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "55 Grizzly Peak Rd.",
-        "City": {
-          "Name": "Butte",
-          "CountryRegion": "United States",
-          "Region": "MT"
+      "AddressInfo": [
+        {
+          "Address": "55 Grizzly Peak Rd.",
+          "City": {
+            "Name": "Butte",
+            "CountryRegion": "United States",
+            "Region": "MT"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -306,14 +328,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "55 Grizzly Peak Rd.",
-        "City": {
-          "Name": "Butte",
-          "CountryRegion": "United States",
-          "Region": "MT"
+      "AddressInfo": [
+        {
+          "Address": "55 Grizzly Peak Rd.",
+          "City": {
+            "Name": "Butte",
+            "CountryRegion": "United States",
+            "Region": "MT"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -328,14 +352,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "55 Grizzly Peak Rd.",
-        "City": {
-          "Name": "Butte",
-          "CountryRegion": "United States",
-          "Region": "MT"
+      "AddressInfo": [
+        {
+          "Address": "55 Grizzly Peak Rd.",
+          "City": {
+            "Name": "Butte",
+            "CountryRegion": "United States",
+            "Region": "MT"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -351,14 +377,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "87 Polk St. Suite 5",
-        "City": {
-          "Name": "San Francisco",
-          "CountryRegion": "United States",
-          "Region": "CA"
+      "AddressInfo": [
+        {
+          "Address": "87 Polk St. Suite 5",
+          "City": {
+            "Name": "San Francisco",
+            "CountryRegion": "United States",
+            "Region": "CA"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -374,14 +402,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "87 Polk St. Suite 5",
-        "City": {
-          "Name": "San Francisco",
-          "CountryRegion": "United States",
-          "Region": "CA"
+      "AddressInfo": [
+        {
+          "Address": "87 Polk St. Suite 5",
+          "City": {
+            "Name": "San Francisco",
+            "CountryRegion": "United States",
+            "Region": "CA"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -397,14 +427,16 @@
       ],
       "FavoriteFeature": "Feature1",
       "Features": [],
-      "AddressInfo": [{
-        "Address": "87 Polk St. Suite 5",
-        "City": {
-          "Name": "San Francisco",
-          "CountryRegion": "United States",
-          "Region": "CA"
+      "AddressInfo": [
+        {
+          "Address": "87 Polk St. Suite 5",
+          "City": {
+            "Name": "San Francisco",
+            "CountryRegion": "United States",
+            "Region": "CA"
+          }
         }
-      }],
+      ],
       "HomeAddress": null
     },
     {
@@ -422,14 +454,16 @@
       "FavoriteFeature": "Feature1",
       "Features": [],
       "Budget": 0,
-      "AddressInfo": [{
-        "Address": "87 Polk St. Suite 5",
-        "City": {
-          "Name": "San Francisco",
-          "CountryRegion": "United States",
-          "Region": "CA"
+      "AddressInfo": [
+        {
+          "Address": "87 Polk St. Suite 5",
+          "City": {
+            "Name": "San Francisco",
+            "CountryRegion": "United States",
+            "Region": "CA"
+          }
         }
-      }],
+      ],
       "HomeAddress": null,
       "BossOffice": null
     },
@@ -447,7 +481,8 @@
       "FavoriteFeature": "Feature1",
       "Features": [],
       "Cost": 0,
-      "AddressInfo": [{
+      "AddressInfo": [
+        {
           "Address": "87 Polk St. Suite 5",
           "City": {
             "Name": "San Francisco",

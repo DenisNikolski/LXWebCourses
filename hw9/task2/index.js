@@ -9,8 +9,8 @@ sap.ui.require([
     // Attach an anonymous function to the SAPUI5 'init' event
     sap.ui.getCore().attachInit(function () {
         var oProductModel = new JSONModel();
-        oProductModel.loadData("./model/Products.json");
-        sap.ui.getCore().setModel(oProductModel, "products");
+        oProductModel.loadData("./model/People.json");
+        sap.ui.getCore().setModel(oProductModel, "people");
 
         // Create a resource bundle for language specific texts
         var oResourceModel = new ResourceModel({

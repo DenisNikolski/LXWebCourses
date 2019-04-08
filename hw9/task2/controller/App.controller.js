@@ -6,18 +6,18 @@ sap.ui.define([
     return Controller.extend("sap.ui.demo.db.controller.App", {
         onItemSelected: function (oEvent) {
             var oSelectedItem = oEvent.getSource();
-            var oContext = oSelectedItem.getBindingContext("products");
+            var oContext = oSelectedItem.getBindingContext("people");
             var sPath = oContext.getPath();
-            var oProductDetailPanel = this.byId("productDetailsPanel");
+            var oProductDetailPanel = this.byId("PersonDetailsPanel");
             oProductDetailPanel.bindElement({
                 path: sPath,
-                model: "products"
+                model: "people"
             });
 
             var oAddressDetailPanel = this.byId("addressDetailsPanel");
             oAddressDetailPanel.bindElement({
                 path: sPath,
-                model: "products"
+                model: "people"
             });
         }
     });
